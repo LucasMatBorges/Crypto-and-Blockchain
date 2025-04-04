@@ -5,7 +5,7 @@ import time
 block_base = "example-block-with-transactions"
 
 # Number of zeros the hash must start with (defines the difficulty)
-difficulty = 6
+difficulty = 4
 target_prefix = "0" * difficulty
 
 # Start nonce and define the maximum (32-bit nonce)
@@ -33,7 +33,7 @@ while nonce < max_nonce:
     if hash_result.startswith(target_prefix):
         total_time = time.time() - start_time
         print("\n✅ Block successfully mined!")
-        print(f"Nonce found: {nonce}")
+        print(f"Nonce found: {nonce:,}")  # Adding commas
         print(f"Valid hash: {hash_result}")
         print(f"⏱️ Total time: {total_time:.2f} seconds")
         break
@@ -43,7 +43,7 @@ while nonce < max_nonce:
         now = time.time()
         step_time = now - step_start_time
         total_elapsed = now - start_time
-        print(f"Trying nonce: {nonce}... Hash: {hash_result[:16]}... "
+        print(f"Trying nonce: {nonce:,}... Hash: {hash_result[:16]}... "  # Adding commas
               f"Step time: {step_time:.2f}s | Total: {total_elapsed:.2f}s")
         step_start_time = now  # Reset step timer
 
