@@ -48,6 +48,12 @@ class BST:
             result.append(node.key)
             self._inorder_recursive(node.right, result)
 
+def print_tree(node, prefix="", is_left=True):
+    if node is not None:
+        print_tree(node.right, prefix + ("│   " if is_left else "    "), False)
+        print(prefix + ("└── " if is_left else "┌── ") + str(node.key))
+        print_tree(node.left, prefix + ("    " if is_left else "│   "), True)
+
 # Example usage
 if __name__ == "__main__":
     bst = BST()
@@ -64,3 +70,6 @@ if __name__ == "__main__":
         print(f"Key {search_key} found in BST.")
     else:
         print(f"Key {search_key} not found in BST.")
+
+    print("\nTree Visualization:")
+    print_tree(bst.root)
